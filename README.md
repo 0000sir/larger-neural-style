@@ -1,8 +1,14 @@
 # larger-neural-style
 Large size image generation with neural-style
 
+
 # Requirement
 You should have [https://github.com/jcjohnson/neural-style/issues] first!
+
+# Usage
+Copy this script to neural-style directory, then run:
+bigbrush.sh input_file style_file
+Make sure you have an 'output' directory of generated files
 
 # how it works
 ## 1. Generate a small size image

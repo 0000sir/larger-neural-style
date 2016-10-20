@@ -5,6 +5,10 @@ Large size image generation with neural-style
 # Requirement
 You should have [Nerual-Style](https://github.com/jcjohnson/neural-style/) first!
 
+And ImageMagick, install it with:
+
+`sudo apt-get install imagemagick`
+
 # Usage
 Copy this script to neural-style directory, then run:
 

@@ -14,6 +14,10 @@ Copy this script to neural-style directory, then run:
 
 bigbrush.sh input_file style_file
 
+If you face a permission error, try using chmod to fix the issue: 
+
+`chmod u+x ./bigbrush.sh`
+
 # how it works
 ## 1. Generate The First Output Image:
 It is recommended that you change the Neural-Style parameters to your linking.

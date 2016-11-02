@@ -52,7 +52,7 @@ main(){
 		#for i in $( seq 0 8 ); do
 		#	neural_style $out_dir/$clean_name"_$i.png" $style_dir/$style_name"_$i.png" $tiles_dir/$clean_name"_$i.png"
 		#done
-		neural_style $out_dir/$tile $style $tiles_dir/$tile
+		neural_style_tiled $out_dir/$tile $style $tiles_dir/$tile
 	done
 	
 	# 5. feather tiles
@@ -89,6 +89,24 @@ composite $output/$clean_name.large_feathered.png $output/$clean_name.large.png 
 
 retry=0
 neural_style(){
+	echo "Neural Style Transfering "$1
+	if [ ! -s $3 ]; then
+		th neural_style.lua -content_image $1 -style_image $2 -output_image $3 \
+				-image_size 1000 -print_iter 100 -backend cudnn -gpu 0 -save_iter 0 \
+				-style_weight 20 -num_iterations 500
+				#-original_colors 1
+	fi
+	if [ ! -s $3 ] && [ $retry -lt 3 ] ;then
+			echo "Transfer Failed, Retrying for $retry time(s)"
+			retry=`echo 1 $retry | awk '{print $1+$2}'`
+			neural_style $1 $2 $3
+	fi
+	retry=0
+}
+
+main $1 $2 $3
+
+neural_style_tiled(){
 	echo "Neural Style Transfering "$1
 	if [ ! -s $3 ]; then
 		th neural_style.lua -content_image $1 -style_image $2 -output_image $3 \

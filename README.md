@@ -14,8 +14,6 @@ Copy this script to neural-style directory, then run:
 
 bigbrush.sh input_file style_file
 
-Make sure you have an 'output' directory of generated files
-
 # how it works
 ## 1. Generate a small size image
 1000px in this script, I use GTX1080 to do it. The Neural-Style parameters in the script are easy to change to your linking.

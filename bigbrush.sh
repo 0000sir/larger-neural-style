@@ -111,8 +111,9 @@ neural_style_tiled(){
 	if [ ! -s $3 ]; then
 		th neural_style.lua -content_image $1 -style_image $2 -output_image $3 \
 				-image_size 1000 -print_iter 100 -backend cudnn -gpu 0 -save_iter 0 \
-				-style_weight 20 -num_iterations 500
+				-style_weight 20 -num_iterations 250 
 				#-original_colors 1
+				# A lower iteration count for the tiles results in less divergence between tiles
 	fi
 	if [ ! -s $3 ] && [ $retry -lt 3 ] ;then
 			echo "Transfer Failed, Retrying for $retry time(s)"

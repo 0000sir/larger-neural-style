@@ -63,8 +63,23 @@ main(){
 					$feathered_dir/$clean_name'_2.png' $feathered_dir/$clean_name'_3.png' \
 					$feathered_dir/$clean_name'_4.png' $feathered_dir/$clean_name'_5.png' \
 					$feathered_dir/$clean_name'_6.png' $feathered_dir/$clean_name'_7.png' \
-					$feathered_dir/$clean_name'_8.png'  -tile 3x3 -geometry -$border_w-$border_h $output/$clean_name.large.png
+					$feathered_dir/$clean_name'_8.png'  -tile 3x3 -geometry -$border_w-$border_h $output/$clean_name.large_feathered.png
 }
+
+# 7. merge un-feathered tiles
+	montage $tiles_dir/$clean_name'_0.png' $tiles_dir/$clean_name'_1.png' \
+					$tiles_dir/$clean_name'_2.png' $tiles_dir/$clean_name'_3.png' \
+					$tiles_dir/$clean_name'_4.png' $tiles_dir/$clean_name'_5.png' \
+					$tiles_dir/$clean_name'_6.png' $tiles_dir/$clean_name'_7.png' \
+					$tiles_dir/$clean_name'_8.png'  -tile 3x3 -geometry -$border_w-$border_h $output/$clean_name.large.png
+			
+
+
+# 8. Combine feathered and un-feathered output images to disguise feathering.
+
+composite $output/$clean_name.large_feathered.png $output/$clean_name.large.png result.png
+
+
 retry=0
 neural_style(){
 	echo "Neural Style Transfering "$1

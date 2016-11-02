@@ -18,7 +18,8 @@ If you face a permission error, try using chmod to fix the issue:
 
 `chmod u+x ./bigbrush.sh`
 
-# how it works
+# How It Works
+
 ## 1. Generate The First Output Image:
 It is recommended that you change the Neural-Style parameters to your linking.
 

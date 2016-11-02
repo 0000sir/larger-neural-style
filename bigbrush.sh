@@ -104,8 +104,8 @@ neural_style(){
 	retry=0
 }
 
-main $1 $2 $3
 
+retry=0
 neural_style_tiled(){
 	echo "Neural Style Transfering "$1
 	if [ ! -s $3 ]; then
@@ -118,7 +118,7 @@ neural_style_tiled(){
 	if [ ! -s $3 ] && [ $retry -lt 3 ] ;then
 			echo "Transfer Failed, Retrying for $retry time(s)"
 			retry=`echo 1 $retry | awk '{print $1+$2}'`
-			neural_style $1 $2 $3
+			neural_style_tiled $1 $2 $3
 	fi
 	retry=0
 }

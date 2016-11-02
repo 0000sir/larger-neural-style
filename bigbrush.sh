@@ -72,7 +72,7 @@ main(){
 					$feathered_dir/$clean_name'_8.png'  -tile 3x3 -geometry -$border_w-$border_h $output/$clean_name.large_feathered.png
 
 
-# 7. merge un-feathered tiles
+	# 7. merge un-feathered tiles
 	montage $tiles_dir/$clean_name'_0.png' $tiles_dir/$clean_name'_1.png' \
 					$tiles_dir/$clean_name'_2.png' $tiles_dir/$clean_name'_3.png' \
 					$tiles_dir/$clean_name'_4.png' $tiles_dir/$clean_name'_5.png' \
@@ -81,9 +81,9 @@ main(){
 			
 
 
-# 8. Combine feathered and un-feathered output images to disguise feathering.
+	# 8. Combine feathered and un-feathered output images to disguise feathering.
 
-composite $output/$clean_name.large_feathered.png $output/$clean_name.large.png $output/$clean_name.large_final.png
+	composite $output/$clean_name.large_feathered.png $output/$clean_name.large.png $output/$clean_name.large_final.png
 
 }
 

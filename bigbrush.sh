@@ -1,5 +1,11 @@
 #! /bin/bash
 
+# Check for output directory, and create it if missing
+if [ ! -d "$output" ]; then
+  mkdir output
+fi
+
+
 main(){
 	# 1. defines
 	input=$1

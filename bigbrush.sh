@@ -26,12 +26,12 @@ main(){
 	# 3. tile it
 	out_dir=$output/$clean_name
 	mkdir -p $out_dir
-	convert $out_file -crop 3x3+20+20@ +repage +adjoin $out_dir/$clean_name"_%d.jpg"
+	convert $out_file -crop 3x3+20+20@ +repage +adjoin $out_dir/$clean_name"_%d.png"
 	# tile style
-	#convert $style -crop 3x3+20+20@ +repage +adjoin $style_dir/$style_name"_%d.jpg"
+	#convert $style -crop 3x3+20+20@ +repage +adjoin $style_dir/$style_name"_%d.png"
 	
-	w2=`convert $out_dir/$clean_name'_0.jpg' -format "%w" info:`
-	h2=`convert $out_dir/$clean_name'_0.jpg' -format "%h" info:`
+	w2=`convert $out_dir/$clean_name'_0.png' -format "%w" info:`
+	h2=`convert $out_dir/$clean_name'_0.png' -format "%h" info:`
 	w_percent=`echo 20 $w2 | awk '{print $1/$2}'`
 	h_percent=`echo 20 $h2 | awk '{print $1/$2}'`
 
@@ -41,10 +41,10 @@ main(){
 	# 4. neural-style each tile
 	tiles_dir="$out_dir/tiles"
 	mkdir -p $tiles_dir
-	for tile in `ls $out_dir | grep $clean_name"_"[0-9]".jpg"`
+	for tile in `ls $out_dir | grep $clean_name"_"[0-9]".png"`
 	do
 		#for i in $( seq 0 8 ); do
-		#	neural_style $out_dir/$clean_name"_$i.jpg" $style_dir/$style_name"_$i.jpg" $tiles_dir/$clean_name"_$i.jpg"
+		#	neural_style $out_dir/$clean_name"_$i.png" $style_dir/$style_name"_$i.png" $tiles_dir/$clean_name"_$i.png"
 		#done
 		neural_style $out_dir/$tile $style $tiles_dir/$tile
 	done
@@ -52,7 +52,7 @@ main(){
 	# 5. feather tiles
 	feathered_dir=$out_dir/feathered
 	mkdir -p $feathered_dir
-	for tile in `ls $tiles_dir | grep $clean_name"_"[0-9]".jpg"`
+	for tile in `ls $tiles_dir | grep $clean_name"_"[0-9]".png"`
 	do
 		tile_name="${tile%.*}"
 		convert $tiles_dir/$tile -alpha set -virtual-pixel transparent -channel A -morphology Distance Euclidean:1,50\! +channel "$feathered_dir/$tile_name.png"
@@ -63,7 +63,7 @@ main(){
 					$feathered_dir/$clean_name'_2.png' $feathered_dir/$clean_name'_3.png' \
 					$feathered_dir/$clean_name'_4.png' $feathered_dir/$clean_name'_5.png' \
 					$feathered_dir/$clean_name'_6.png' $feathered_dir/$clean_name'_7.png' \
-					$feathered_dir/$clean_name'_8.png'  -tile 3x3 -geometry -$border_w-$border_h $output/$clean_name.large.jpg
+					$feathered_dir/$clean_name'_8.png'  -tile 3x3 -geometry -$border_w-$border_h $output/$clean_name.large.png
 }
 retry=0
 neural_style(){

@@ -64,7 +64,7 @@ main(){
 					$feathered_dir/$clean_name'_4.png' $feathered_dir/$clean_name'_5.png' \
 					$feathered_dir/$clean_name'_6.png' $feathered_dir/$clean_name'_7.png' \
 					$feathered_dir/$clean_name'_8.png'  -tile 3x3 -geometry -$border_w-$border_h $output/$clean_name.large_feathered.png
-}
+
 
 # 7. merge un-feathered tiles
 	montage $tiles_dir/$clean_name'_0.png' $tiles_dir/$clean_name'_1.png' \
@@ -79,6 +79,7 @@ main(){
 
 composite $output/$clean_name.large_feathered.png $output/$clean_name.large.png $output/$clean_name.large_final.png
 
+}
 
 retry=0
 neural_style(){

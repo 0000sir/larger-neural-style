@@ -77,7 +77,7 @@ main(){
 
 # 8. Combine feathered and un-feathered output images to disguise feathering.
 
-composite $output/$clean_name.large_feathered.png $output/$clean_name.large.png result.png
+composite $output/$clean_name.large_feathered.png $output/$clean_name.large.png $output/$clean_name.large_final.png
 
 
 retry=0

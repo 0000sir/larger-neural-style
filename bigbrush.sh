@@ -45,15 +45,15 @@ main(){
 	border_h=`echo $h1 $h_percent | awk '{print $1*$2}'`
 	
 	#Resize all tiles to avoid ImageMagick weirdness
-	 convert $out_dir/$clean_name'_0.png' -resize $w2x$w1\! $out_dir/$clean_name'_0.png'
-	 convert $out_dir/$clean_name'_1.png' -resize $w2x$w1\! $out_dir/$clean_name'_1.png'
-	 convert $out_dir/$clean_name'_2.png' -resize $w2x$w1\! $out_dir/$clean_name'_2.png'
-	 convert $out_dir/$clean_name'_3.png' -resize $w2x$w1\! $out_dir/$clean_name'_3.png'
-	 convert $out_dir/$clean_name'_4.png' -resize $w2x$w1\! $out_dir/$clean_name'_4.png'
-	 convert $out_dir/$clean_name'_5.png' -resize $w2x$w1\! $out_dir/$clean_name'_5.png'
-	 convert $out_dir/$clean_name'_6.png' -resize $w2x$w1\! $out_dir/$clean_name'_6.png'
-	 convert $out_dir/$clean_name'_7.png' -resize $w2x$w1\! $out_dir/$clean_name'_7.png'
-	 convert $out_dir/$clean_name'_8.png' -resize $w2x$w1\! $out_dir/$clean_name'_8.png'
+	 convert $out_dir/$clean_name'_0.png' -resize $w2x$h2\! $out_dir/$clean_name'_0.png'
+	 convert $out_dir/$clean_name'_1.png' -resize $w2x$h2\! $out_dir/$clean_name'_1.png'
+	 convert $out_dir/$clean_name'_2.png' -resize $w2x$h2\! $out_dir/$clean_name'_2.png'
+	 convert $out_dir/$clean_name'_3.png' -resize $w2x$h2\! $out_dir/$clean_name'_3.png'
+	 convert $out_dir/$clean_name'_4.png' -resize $w2x$h2\! $out_dir/$clean_name'_4.png'
+	 convert $out_dir/$clean_name'_5.png' -resize $w2x$h2\! $out_dir/$clean_name'_5.png'
+	 convert $out_dir/$clean_name'_6.png' -resize $w2x$h2\! $out_dir/$clean_name'_6.png'
+	 convert $out_dir/$clean_name'_7.png' -resize $w2x$h2\! $out_dir/$clean_name'_7.png'
+	 convert $out_dir/$clean_name'_8.png' -resize $w2x$h2\! $out_dir/$clean_name'_8.png'
 	 					
 					#WxH			
 

@@ -33,7 +33,7 @@ main(){
 	out_dir=$output/$clean_name
 	mkdir -p $out_dir
 	convert $out_file -crop 3x3+20+20@ +repage +adjoin $out_dir/$clean_name"_%d.png"
-	#To change the crop values, change the +20+20 on line 35, and change the "20" on lines 77,78. Make sure to use the same value.
+	#To change the crop values, change the +20+20 on line 35, and change the "20" on lines 77,78,99,100. Make sure to use the same value.
 	
 	# tile style
 	#convert $style -crop 3x3+20+20@ +repage +adjoin $style_dir/$style_name"_%d.png"

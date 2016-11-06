@@ -6,6 +6,9 @@ if [ ! -d "$output" ]; then
 fi
 
 
+
+
+
 main(){
 	# 1. defines
 	input=$1
@@ -19,6 +22,11 @@ main(){
 	
 	output="./output"
 	out_file=$output/$input_file
+
+	#The value of overlap between tiles. 
+	overlapcrop=50
+
+
 	
 	# 2. neural-style the original input
 	if [ ! -s $out_file ] ; then
@@ -32,9 +40,8 @@ main(){
 	# 3. tile it
 	out_dir=$output/$clean_name
 	mkdir -p $out_dir
-	convert $out_file -crop 3x3+20+20@ +repage +adjoin $out_dir/$clean_name"_%d.png"
-	#To change the crop values, change the +20+20 on line 35, and change the "20" on lines 77,78,99,100. Make sure to use the same value.
-	
+	convert $out_file -crop 3x3+"$overlapcrop"+"$overlapcrop"@ +repage +adjoin $out_dir/$clean_name"_%d.png"
+
 	# tile style
 	#convert $style -crop 3x3+20+20@ +repage +adjoin $style_dir/$style_name"_%d.png"
 	
@@ -68,26 +75,19 @@ main(){
 		neural_style_tiled $out_dir/$tile $style $tiles_dir/$tile
 	done
 	
-	#Test	
-
 
 
 	w2_2=`convert $tiles_dir/$clean_name'_0.png' -format "%w" info:`
 	h2_2=`convert $tiles_dir/$clean_name'_0.png' -format "%h" info:`
-	w_20=20
-	h_20=20
-
-	#w2_22="$w2"/"$w2_2"
-	#h2_22="$h2"/"$h2_2"
+	w_20=$overlapcrop
+	h_20=$overlapcrop
 
 	w2_22=`echo $w2 $w2_2 | awk '{print $1/$2}'`
 	h2_22=`echo $h2 $h2_2 | awk '{print $1/$2}'`
 
-
 	border_w_2=`echo $w2_22 $w_20 | awk '{print $1*$2}'`
 	border_h_2=`echo $h2_22 $h_20 | awk '{print $1*$2}'`
 	
-
 	border_w=`echo $border_w_2 $w_20 | awk '{print $1+$2}'`
 	border_h=`echo $border_h_2 $h_20 | awk '{print $1+$2}'`
 
@@ -96,8 +96,8 @@ main(){
 
 	
 	
-	w_percent=`echo 20 $w2_2 | awk '{print $1/$2}'`
-	h_percent=`echo 20 $h2_2 | awk '{print $1/$2}'`
+	w_percent=`echo $overlapcrop $w2_2 | awk '{print $1/$2}'`
+	h_percent=`echo $overlapcrop $h2_2 | awk '{print $1/$2}'`
 
 	#Test
 
@@ -139,7 +139,7 @@ neural_style(){
 	if [ ! -s $3 ]; then
 		th neural_style.lua -content_image $1 -style_image $2 -output_image $3 \
 				-image_size 1000 -print_iter 100 -backend cudnn -gpu 0 -save_iter 0 \
-				-style_weight 20 -num_iterations 250 
+				-style_weight 20 -num_iterations 10 
 				#-original_colors 1
 				# A lower iteration count for the tiles results in less divergence between tiles
 				#Change the command including "th neural_style.lua" to use other neural network systems.
@@ -159,7 +159,7 @@ neural_style_tiled(){
 	if [ ! -s $3 ]; then
 		th neural_style.lua -content_image $1 -style_image $2 -output_image $3 \
 			-image_size 1000 -print_iter 100 -backend cudnn -gpu 0 -save_iter 0 \
-				-style_weight 20 -num_iterations 250 
+				-style_weight 20 -num_iterations 10 
 				#-original_colors 1
 				# A lower iteration count for the tiles results in less divergence between tiles
 				#Change the command including "th neural_style.lua" to use other neural network systems.
@@ -173,3 +173,4 @@ neural_style_tiled(){
 }
 
 main $1 $2 $3
+

@@ -141,7 +141,6 @@ neural_style(){
 				-image_size 1000 -print_iter 100 -backend cudnn -gpu 0 -save_iter 0 \
 				-style_weight 20 -num_iterations 10 
 				#-original_colors 1
-				# A lower iteration count for the tiles results in less divergence between tiles
 				#Change the command including "th neural_style.lua" to use other neural network systems.
 	fi
 	if [ ! -s $3 ] && [ $retry -lt 3 ] ;then

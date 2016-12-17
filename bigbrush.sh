@@ -3,7 +3,7 @@
 # DEFINES
 IMAGE_SIZE=1000 # -image_size for neural-style
 ITERATIONS=250 # -num_iterations for neural-style
-EXPAND_BORDER=20 # expanded border while cropping 
+EXPAND_BORDER=50 # expanded border while cropping 
 
 main(){
 	# 1. defines

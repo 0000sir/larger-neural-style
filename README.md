@@ -12,16 +12,22 @@ And ImageMagick, install it with:
 # Usage
 Copy this script to neural-style directory, then run:
 
-bigbrush.sh input_file style_file
+`bigbrush.sh input_file style_file`
+
+Or if you are using the 2x2 tile version, run:
+
+`bigbrush-2x2.sh input_file style_file`
 
 If you face a permission error, try using chmod to fix the issue: 
 
 `chmod u+x ./bigbrush.sh`
 
+`chmod u+x ./bigbrush-2x2.sh`
+
 # How It Works
 
 ## 1. Generate The First Output Image:
-It is recommended that you change the Neural-Style parameters to your linking.
+It is recommended that you change the Neural-Style parameters for both the original and tile commands to your linking. It is recommened that the [iteration value for the tiles is set at a lower value to ensure they remain similar](https://github.com/jcjohnson/neural-style/wiki/Techniques-For-Increasing-Image-Quality-Without-Buying-a-Better-GPU). The `-save_iter` command can be used, but it may require manual editing of file names for the tiles to work.
 
 ## 2. Split The Initial Output Image Into Tiles:
 Imagemagick is used to divide your first Neural-Style output image into a series of overlapping cropped images.
